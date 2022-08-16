@@ -1,9 +1,10 @@
 #include <bits/stdc++.h>
+
 #include <limits>
 using namespace std;
 
 class Solution {
-public:
+ public:
   int maxChunksToSorted(vector<int> &arr) {
     vector<int> v(arr.size(), INT_MAX);
     partial_sum(arr.crbegin(), arr.crend(), v.rbegin() + 1,
