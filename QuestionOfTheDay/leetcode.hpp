@@ -1,14 +1,13 @@
-#ifndef _LEETCODE_H_
-#define _LEETCODE_H_ 1
+#ifndef LEETCODE_H_
+#define LEETCODE_H_
 #include <bits/stdc++.h>
-#include <limits>
-#include <inttypes.h>
+using namespace std;
+
 struct TreeNode {
   int val;
   TreeNode* left;
   TreeNode* right;
   TreeNode(int x) : val(x) {}
 }; 
-using namespace std;
 
 #endif
