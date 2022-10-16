@@ -1,34 +1,45 @@
 #include "leetcode.hpp"
 
-
 class Solution {
-  public:
-    vector<vector<int>> levelOrder(TreeNode* root) noexcept {
-      vector<vector<int>> res;
-      if (nullptr == root) {
-        return res;
-      }
-      queue<TreeNode*> que;
-      que.push(root);
-      que.push(nullptr);
-      res.push_back({});
-      while (!que.empty()) {
-        auto node = que.front();
-        que.pop();
-        if (node) {
-          res.back().emplace_back(node->val);
-          if (node->left) { 
-            que.push(node->left);
-          }
-          if (node->right) {
-            que.push(node->right);
-          }
-        } else if (!que.empty()) {
-          res.push_back({});
-          que.push(nullptr);
+ public:
+  vector<vector<int>> levelOrder(TreeNode* root) noexcept {
+    vector<vector<int>> ans;
+
+    if (!root) {
+      return ans;
+    }
+
+    queue<TreeNode*> nodeQueue;
+    nodeQueue.push(root);
+    bool isOrderLeft = true;
+
+    while (!nodeQueue.empty()) {
+      deque<int> levelList;
+      int size = nodeQueue.size();
+
+      for (int i = 0; i < size; ++i) {
+
+        auto node = nodeQueue.front();
+        nodeQueue.pop();
+
+        if (isOrderLeft) {
+          levelList.push_back(node->val);
+        } else {
+          levelList.push_front(node->val);
+        }
+
+        if (node->left) {
+          nodeQueue.push(node->left);
+        }
+
+        if (node->right) {
+          nodeQueue.push(node->right);
         }
       }
-      return res;
-    }
-};
 
+      ans.emplace_back(vector<int>{levelList.begin(), levelList.end()});
+      isOrderLeft = !isOrderLeft;
+    }
+    return ans;
+  }
+};
