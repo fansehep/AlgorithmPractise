@@ -1,6 +1,7 @@
 #ifndef LEETCODE_H_
 #define LEETCODE_H_
 #include <bits/stdc++.h>
+#include <stdint.h>
 using namespace std;
 
 struct TreeNode {
